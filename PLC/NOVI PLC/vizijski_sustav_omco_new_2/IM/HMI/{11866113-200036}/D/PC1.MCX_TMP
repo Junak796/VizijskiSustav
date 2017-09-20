@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MCX>
+	<ProjectLocation>
+		C:\Users\Sime\Desktop\vizijski1509\NOVI PLC\vizijski_sustav_omco_new_2\IM\HMI\{11866113-200036}\D\HMI_9T5W
+	</ProjectLocation>
+	<ProjectIsConsistent>
+		1
+	</ProjectIsConsistent>
+	<SharedMcxLocation>
+		
+	</SharedMcxLocation>
+	<ProjectLocationUNC>
+		\\SIME-PC\WinCC_Project_HMI_9T5W_2
+	</ProjectLocationUNC>
+	<RDP>
+	<LastModifiedDate>
+		2017-09-18 13:33:53
+	</LastModifiedDate>
+	</RDP>
+</MCX>

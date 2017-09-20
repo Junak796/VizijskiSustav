@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ISO15745Profile xmlns="http://www.profibus.com/GSDML/2003/11/DeviceProfile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.profibus.com/GSDML/2003/11/DeviceProfile ../xsd/GSDML-DeviceProfile-V2.0.xsd">
+  <ProfileHeader>
+    <ProfileIdentification>PROFINET Device Profile</ProfileIdentification>
+    <ProfileRevision>3.40</ProfileRevision>
+    <ProfileName>Device Profile for PROFINET Devices</ProfileName>
+    <ProfileSource>PROFIBUS Nutzerorganisation e. V. (PNO)</ProfileSource>
+    <ProfileClassID>Device</ProfileClassID>
+    <ISO15745Reference>
+      <ISO15745Part>4</ISO15745Part>
+      <ISO15745Edition>1</ISO15745Edition>
+      <ProfileTechnology>GSDML</ProfileTechnology>
+    </ISO15745Reference>
+  </ProfileHeader>
+  <ProfileBody>
+    <DeviceIdentity VendorID="0x0137" DeviceID="0x0001">
+      <InfoText TextId="T_FamilyDescription" />
+      <VendorName Value="Cognex Corp." />
+    </DeviceIdentity>
+    <DeviceFunction>
+      <Family MainFamily="Sensors" ProductFamily="Cognex Vision Sensors" />
+    </DeviceFunction>
+    <ApplicationProcess>
+      <DeviceAccessPointList>
+        <DeviceAccessPointItem PhysicalSlots="0..8" ModuleIdentNumber="0x00000001" MinDeviceInterval="32" DNS_CompatibleName="InSight" FixedInSlots="0" ObjectUUID_LocalIndex="1" ID="DIM2">
+          <ModuleInfo>
+            <Name TextId="T_InSight" />
+            <InfoText TextId="T_InSightDescription" />
+            <VendorName Value="Cognex" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <IOConfigData MaxInputLength="1472" MaxOutputLength="1472" />
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="101" AllowedInSlots="1" UsedInSlots="1" />
+            <ModuleItemRef ModuleItemTarget="201" AllowedInSlots="2" UsedInSlots="2" />
+            <ModuleItemRef ModuleItemTarget="102" AllowedInSlots="3" UsedInSlots="3" />
+            <ModuleItemRef ModuleItemTarget="202" AllowedInSlots="4" UsedInSlots="4" />
+            <ModuleItemRef ModuleItemTarget="103" AllowedInSlots="5" UsedInSlots="5" />
+            <ModuleItemRef ModuleItemTarget="105" AllowedInSlots="6" UsedInSlots="6" />
+            <ModuleItemRef ModuleItemTarget="301" AllowedInSlots="7" />
+            <ModuleItemRef ModuleItemTarget="302" AllowedInSlots="7" />
+            <ModuleItemRef ModuleItemTarget="303" AllowedInSlots="7" UsedInSlots="7" />
+            <ModuleItemRef ModuleItemTarget="304" AllowedInSlots="7" />
+            <ModuleItemRef ModuleItemTarget="305" AllowedInSlots="7" />
+            <ModuleItemRef ModuleItemTarget="401" AllowedInSlots="8" />
+            <ModuleItemRef ModuleItemTarget="402" AllowedInSlots="8" />
+            <ModuleItemRef ModuleItemTarget="403" AllowedInSlots="8" UsedInSlots="8" />
+            <ModuleItemRef ModuleItemTarget="404" AllowedInSlots="8" />
+            <ModuleItemRef ModuleItemTarget="405" AllowedInSlots="8" />
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="DIM1" SubmoduleIdentNumber="0x00000000">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="1" />
+          </Graphics>
+        </DeviceAccessPointItem>
+      </DeviceAccessPointList>
+      <ModuleList>
+        <ModuleItem ID="101" ModuleIdentNumber="0x00000101">
+          <ModuleInfo CategoryRef="Control">
+            <Name TextId="T_acquisition_control" />
+            <InfoText TextId="T_acquisition_control_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="1" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="Unsigned8" TextId="T_AcquisitionRegister" UseAsBits="true">
+                    <BitDataItem BitOffset="0" TextId="T_AcquisitionTriggerEnable" />
+                    <BitDataItem BitOffset="1" TextId="T_AcquisitionTrigger" />
+                    <BitDataItem BitOffset="7" TextId="T_SetOffline" />
+                  </DataItem>
+                </Output>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="102" ModuleIdentNumber="0x00000102">
+          <ModuleInfo CategoryRef="Control">
+            <Name TextId="T_inspection_control" />
+            <InfoText TextId="T_inspection_control_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="2" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="Unsigned8" TextId="T_InspectionRegister" UseAsBits="true">
+                    <BitDataItem BitOffset="0" TextId="T_ResultsBufferingEnable" />
+                    <BitDataItem BitOffset="1" TextId="T_InspectionResultsAck" />
+                  </DataItem>
+                </Output>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="103" ModuleIdentNumber="0x00000103">
+          <ModuleInfo CategoryRef="Control">
+            <Name TextId="T_job_control" />
+            <InfoText TextId="T_job_control_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="3" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="Unsigned8" TextId="T_CurrentJob" />
+                </Input>
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="Unsigned8" TextId="T_SetCurrentJob" />
+                </Output>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="105" ModuleIdentNumber="0x00000105">
+          <ModuleInfo CategoryRef="Control">
+            <Name TextId="T_softevents" />
+            <InfoText TextId="T_softevents_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="5" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="Unsigned8" TextId="T_SoftEventRegister" UseAsBits="true">
+                    <BitDataItem BitOffset="0" TextId="T_SoftEvent0" />
+                    <BitDataItem BitOffset="1" TextId="T_SoftEvent1" />
+                    <BitDataItem BitOffset="2" TextId="T_SoftEvent2" />
+                    <BitDataItem BitOffset="3" TextId="T_SoftEvent3" />
+                    <BitDataItem BitOffset="4" TextId="T_SoftEvent4" />
+                    <BitDataItem BitOffset="5" TextId="T_SoftEvent5" />
+                    <BitDataItem BitOffset="6" TextId="T_SoftEvent6" />
+                    <BitDataItem BitOffset="7" TextId="T_SoftEvent7" />
+                  </DataItem>
+                </Output>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="201" ModuleIdentNumber="0x00000201">
+          <ModuleInfo CategoryRef="Status">
+            <Name TextId="T_acquisition_status" />
+            <InfoText TextId="T_acquisition_status_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="6" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="Unsigned8" TextId="T_AcquisitionStatus" UseAsBits="true">
+                    <BitDataItem BitOffset="0" TextId="T_AcquisitionTriggerReady" />
+                    <BitDataItem BitOffset="1" TextId="T_AcquisitionTriggerAck" />
+                    <BitDataItem BitOffset="2" TextId="T_Acquiring" />
+                    <BitDataItem BitOffset="3" TextId="T_MissedAcquisition" />
+                    <BitDataItem BitOffset="4" TextId="T_OfflineReason" />
+                    <BitDataItem BitOffset="5" TextId="T_OfflineReason" />
+                    <BitDataItem BitOffset="6" TextId="T_OfflineReason" />
+                    <BitDataItem BitOffset="7" TextId="T_Online" />
+                  </DataItem>
+                  <DataItem DataType="Unsigned16" TextId="T_AcquisitionCount" />
+                </Input>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="202" ModuleIdentNumber="0x00000202">
+          <ModuleInfo CategoryRef="Status">
+            <Name TextId="T_inspection_status" />
+            <InfoText TextId="T_inspection_status_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="7" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="Unsigned8" TextId="T_InspectionStatus" UseAsBits="true">
+                    <BitDataItem BitOffset="0" TextId="T_Inspecting" />
+                    <BitDataItem BitOffset="1" TextId="T_InspectionCompleted" />
+                    <BitDataItem BitOffset="2" TextId="T_ResultsBufferOverrun" />
+                    <BitDataItem BitOffset="3" TextId="T_ResultsValid" />
+                    <BitDataItem BitOffset="4" TextId="T_JobLoading" />
+                    <BitDataItem BitOffset="5" TextId="T_JobLoadComplete" />
+                    <BitDataItem BitOffset="6" TextId="T_JobLoadFailed" />
+                  </DataItem>
+                </Input>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="301" ModuleIdentNumber="0x00000301">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_userdata_16" />
+            <InfoText TextId="T_userdata_16_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="8" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="OctetString" TextId="T_UserData" Length="16" />
+                </Output>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="401" ModuleIdentNumber="0x00000401">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_inspection_results_16" />
+            <InfoText TextId="T_inspection_results_16_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="9" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="Unsigned16" TextId="T_InspectionCount" />
+                  <DataItem DataType="Integer16" TextId="T_ResultCode" />
+                  <DataItem DataType="OctetString" TextId="T_InspectionResults" Length="16" />
+                </Input>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="302" ModuleIdentNumber="0x00000302">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_userdata_32" />
+            <InfoText TextId="T_userdata_32_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="10" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="OctetString" TextId="T_UserData" Length="32" />
+                </Output>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="402" ModuleIdentNumber="0x00000402">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_inspection_results_32" />
+            <InfoText TextId="T_inspection_results_32_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="11" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="Unsigned16" TextId="T_InspectionCount" />
+                  <DataItem DataType="Integer16" TextId="T_ResultCode" />
+                  <DataItem DataType="OctetString" TextId="T_InspectionResults" Length="32" />
+                </Input>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="303" ModuleIdentNumber="0x00000303">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_userdata_64" />
+            <InfoText TextId="T_userdata_64_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="12" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="OctetString" TextId="T_UserData" Length="64" />
+                </Output>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="403" ModuleIdentNumber="0x00000403">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_inspection_results_64" />
+            <InfoText TextId="T_inspection_results_64_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="13" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="Unsigned16" TextId="T_InspectionCount" />
+                  <DataItem DataType="Integer16" TextId="T_ResultCode" />
+                  <DataItem DataType="OctetString" TextId="T_InspectionResults" Length="64" />
+                </Input>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="304" ModuleIdentNumber="0x00000304">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_userdata_128" />
+            <InfoText TextId="T_userdata_128_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="14" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="OctetString" TextId="T_UserData" Length="128" />
+                </Output>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="404" ModuleIdentNumber="0x00000404">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_inspection_results_128" />
+            <InfoText TextId="T_inspection_results_128_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="15" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="Unsigned16" TextId="T_InspectionCount" />
+                  <DataItem DataType="Integer16" TextId="T_ResultCode" />
+                  <DataItem DataType="OctetString" TextId="T_InspectionResults" Length="128" />
+                </Input>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="305" ModuleIdentNumber="0x00000305">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_userdata_256" />
+            <InfoText TextId="T_userdata_256_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="16" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="OctetString" TextId="T_UserData" Length="256" />
+                </Output>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="405" ModuleIdentNumber="0x00000405">
+          <ModuleInfo CategoryRef="Data">
+            <Name TextId="T_inspection_results_256" />
+            <InfoText TextId="T_inspection_results_256_info" />
+            <SoftwareRelease Value="3.40" />
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="17" SubmoduleIdentNumber="0x00000000">
+              <IOData>
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="Unsigned16" TextId="T_InspectionCount" />
+                  <DataItem DataType="Integer16" TextId="T_ResultCode" />
+                  <DataItem DataType="OctetString" TextId="T_InspectionResults" Length="256" />
+                </Input>
+              </IOData>
+              <RecordDataList />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+      </ModuleList>
+      <GraphicsList>
+        <GraphicItem ID="1" GraphicFile="GSDML-0137-InSight" />
+      </GraphicsList>
+      <CategoryList>
+        <CategoryItem TextId="T_ControlCategory" ID="Control" />
+        <CategoryItem TextId="T_StatusCategory" ID="Status" />
+        <CategoryItem TextId="T_DataCategory" ID="Data" />
+      </CategoryList>
+      <ExternalTextList>
+        <PrimaryLanguage>
+          <!-- General Text -->
+          <Text TextId="T_InSight" Value="In-Sight" />
+          <Text TextId="T_FamilyDescription" Value="In-Sight Vision Sensors" />
+          <Text TextId="T_InSightDescription" Value="In-Sight Vision Sensor" />
+          <!-- Module Info -->
+          <Text TextId="T_ControlCategory" Value="In-Sight Control Modules" />
+          <Text TextId="T_acquisition_control" Value="Acquisition Control Module" />
+          <Text TextId="T_acquisition_control_info" Value="Controls acquisition and online/offline" />
+          <Text TextId="T_AcquisitionRegister" Value="Acquisition Control Register" />
+          <Text TextId="T_AcquisitionTriggerEnable" Value="Acquisition Trigger Enable" />
+          <Text TextId="T_AcquisitionTrigger" Value="Acquisition Trigger" />
+          <Text TextId="T_StatusCategory" Value="In-Sight Status Modules" />
+          <Text TextId="T_acquisition_status" Value="Acquisition Status Module" />
+          <Text TextId="T_acquisition_status_info" Value="Status of acquisition and online/offline state" />
+          <Text TextId="T_AcquisitionStatus" Value="Acquisition Status Register" />
+          <Text TextId="T_Acquiring" Value="Acquiring" />
+          <Text TextId="T_AcquisitionTriggerReady" Value="Acquisition Trigger Ready" />
+          <Text TextId="T_AcquisitionTriggerAck" Value="Acquisition Trigger Acknowledge" />
+          <Text TextId="T_MissedAcquisition" Value="Missed Acquisition" />
+          <Text TextId="T_AcquisitionCount" Value="Acquisition Count" />
+          <Text TextId="T_inspection_status" Value="Inspection Status Module" />
+          <Text TextId="T_inspection_status_info" Value="Status of the inspection" />
+          <Text TextId="T_InspectionStatus" Value="Inspection Status Register" />
+          <Text TextId="T_Inspecting" Value="Inspecting" />
+          <Text TextId="T_InspectionCompleted" Value="Inspection Completed" />
+          <Text TextId="T_ResultsBufferOverrun" Value="Results Buffer Overrun" />
+          <Text TextId="T_ResultsValid" Value="Results Valid" />
+          <Text TextId="T_inspection_control" Value="Inspection Control Module" />
+          <Text TextId="T_inspection_control_info" Value="Controls the inspection" />
+          <Text TextId="T_InspectionRegister" Value="Inspection Control Register" />
+          <Text TextId="T_ResultsBufferingEnable" Value="Enable Results Buffering" />
+          <Text TextId="T_InspectionResultsAck" Value="Acknowledge Inspection Results" />
+          <Text TextId="T_SetOffline" Value="Set Offline" />
+          <Text TextId="T_OfflineReason" Value="Offline Reason" />
+          <Text TextId="T_Online" Value="Online" />
+          <Text TextId="T_softevents" Value="SoftEvent Control Module" />
+          <Text TextId="T_softevents_info" Value="Trigger SoftEvents" />
+          <Text TextId="T_SoftEventRegister" Value="SoftEvent Control Module" />
+          <Text TextId="T_SoftEvent0" Value="Trigger SoftEvent 0" />
+          <Text TextId="T_SoftEvent1" Value="Trigger SoftEvent 1" />
+          <Text TextId="T_SoftEvent2" Value="Trigger SoftEvent 2" />
+          <Text TextId="T_SoftEvent3" Value="Trigger SoftEvent 3" />
+          <Text TextId="T_SoftEvent4" Value="Trigger SoftEvent 4" />
+          <Text TextId="T_SoftEvent5" Value="Trigger SoftEvent 5" />
+          <Text TextId="T_SoftEvent6" Value="Trigger SoftEvent 6" />
+          <Text TextId="T_SoftEvent7" Value="Trigger SoftEvent 7" />
+          <Text TextId="T_job_control" Value="Job Control Module" />
+          <Text TextId="T_job_control_info" Value="Controls Job Loading" />
+          <Text TextId="T_jobname_control" Value="Current Job Name" />
+          <Text TextId="T_jobname_control_info" Value="Controls Job Loading by Filename" />
+          <Text TextId="T_SetCurrentJob" Value="Set Current Job ID" />
+          <Text TextId="T_CurrentJob" Value="Current Job ID" />
+          <Text TextId="T_JobLoadStatus" Value="Job Load Status" />
+          <Text TextId="T_JobLoading" Value="Job Loading" />
+          <Text TextId="T_JobLoadComplete" Value="Toggles when job load completes" />
+          <Text TextId="T_JobLoadFailed" Value="Set when last job load failed" />
+          <Text TextId="T_DataCategory" Value="In-Sight Data Modules" />
+          <Text TextId="T_userdata_16" Value="User Data - 16 bytes" />
+          <Text TextId="T_userdata_16_info" Value="Writes 16 bytes to In-Sight spreadsheet" />
+          <Text TextId="T_userdata_32" Value="User Data - 32 bytes" />
+          <Text TextId="T_userdata_32_info" Value="Writes 32 bytes to In-Sight spreadsheet" />
+          <Text TextId="T_userdata_64" Value="User Data - 64 bytes" />
+          <Text TextId="T_userdata_64_info" Value="Writes 64 bytes to In-Sight spreadsheet" />
+          <Text TextId="T_userdata_128" Value="User Data - 128 bytes" />
+          <Text TextId="T_userdata_128_info" Value="Writes 128 bytes to In-Sight spreadsheet" />
+          <Text TextId="T_userdata_256" Value="User Data - 256 bytes" />
+          <Text TextId="T_userdata_256_info" Value="Writes 256 bytes to In-Sight spreadsheet" />
+          <Text TextId="T_UserData" Value="User Data" />
+          <Text TextId="T_inspection_results_16" Value="Inspection Results - 16 bytes" />
+          <Text TextId="T_inspection_results_16_info" Value="Reads 16 bytes from In-Sight spreadsheet" />
+          <Text TextId="T_inspection_results_32" Value="Inspection Results - 32 bytes" />
+          <Text TextId="T_inspection_results_32_info" Value="Reads 32 bytes from In-Sight spreadsheet" />
+          <Text TextId="T_inspection_results_64" Value="Inspection Results - 64 bytes" />
+          <Text TextId="T_inspection_results_64_info" Value="Reads 64 bytes from In-Sight spreadsheet" />
+          <Text TextId="T_inspection_results_128" Value="Inspection Results - 128 bytes" />
+          <Text TextId="T_inspection_results_128_info" Value="Reads 128 bytes from In-Sight spreadsheet" />
+          <Text TextId="T_inspection_results_256" Value="Inspection Results - 256 bytes" />
+          <Text TextId="T_inspection_results_256_info" Value="Reads 256 bytes from In-Sight spreadsheet" />
+          <Text TextId="T_InspectionResults" Value="Inspection Results" />
+          <Text TextId="T_ResultCode" Value="Result Code" />
+          <Text TextId="T_InspectionCount" Value="Inspection Count" />
+        </PrimaryLanguage>
+        <Language xml:lang="de">
+          <Text TextId="T_InSight" Value="In-Sight" />
+          <Text TextId="T_FamilyDescription" Value="In-Sight Vision-Sensoren" />
+          <Text TextId="T_InSightDescription" Value="In-Sight Vision-Sensor" />
+          <Text TextId="T_ControlCategory" Value="In-Sight-Steuermodule" />
+          <Text TextId="T_acquisition_control" Value="Modul zur Aufnahmesteuerung" />
+          <Text TextId="T_acquisition_control_info" Value="Steuert die Aufnahme und online/offline" />
+          <Text TextId="T_AcquisitionRegister" Value="Aufnahmesteuerungsregister" />
+          <Text TextId="T_AcquisitionTriggerEnable" Value="Bildaufnahmetrigger aktivieren" />
+          <Text TextId="T_AcquisitionTrigger" Value="Bildaufnahme-Trigger" />
+          <Text TextId="T_StatusCategory" Value="In-Sight-Statusmodule" />
+          <Text TextId="T_acquisition_status" Value="Aufnahmestatusmodul" />
+          <Text TextId="T_acquisition_status_info" Value="Status der Aufnahme und Online-/Offlinestatus" />
+          <Text TextId="T_AcquisitionStatus" Value="Aufnahmestatusregister" />
+          <Text TextId="T_Acquiring" Value="Aufnahme läuft" />
+          <Text TextId="T_AcquisitionTriggerReady" Value="Bildaufnahmetrigger bereit" />
+          <Text TextId="T_AcquisitionTriggerAck" Value="Bildaufnahmetrigger-Bestätigung" />
+          <Text TextId="T_MissedAcquisition" Value="Bildaufnahme fehlgeschlagen" />
+          <Text TextId="T_AcquisitionCount" Value="Aufnahmeanzahl" />
+          <Text TextId="T_inspection_status" Value="Inspektionsstatusmodul" />
+          <Text TextId="T_inspection_status_info" Value="Status der Inspektion" />
+          <Text TextId="T_InspectionStatus" Value="Inspektionsstatusregister" />
+          <Text TextId="T_Inspecting" Value="Inspektion läuft" />
+          <Text TextId="T_InspectionCompleted" Value="Inspektion abgeschlossen" />
+          <Text TextId="T_ResultsBufferOverrun" Value="Ergebnispufferüberlauf" />
+          <Text TextId="T_ResultsValid" Value="Ergebnisse gültig" />
+          <Text TextId="T_inspection_control" Value="Inspektionssteuerungsmodul" />
+          <Text TextId="T_inspection_control_info" Value="Steuert die Inspektion" />
+          <Text TextId="T_InspectionRegister" Value="Inspektionssteuerungsregister" />
+          <Text TextId="T_ResultsBufferingEnable" Value="Ergebnispufferung aktivieren" />
+          <Text TextId="T_InspectionResultsAck" Value="Inspektionsergebnisse bestätigen" />
+          <Text TextId="T_SetOffline" Value="Offline schalten" />
+          <Text TextId="T_OfflineReason" Value="Ursache für Offline" />
+          <Text TextId="T_Online" Value="Online" />
+          <Text TextId="T_softevents" Value="SoftEvent-Steuermodul" />
+          <Text TextId="T_softevents_info" Value="SoftEvents auslösen" />
+          <Text TextId="T_SoftEventRegister" Value="SoftEvent-Steuermodul" />
+          <Text TextId="T_SoftEvent0" Value="SoftEvent 0 auslösen" />
+          <Text TextId="T_SoftEvent1" Value="SoftEvent 1 auslösen" />
+          <Text TextId="T_SoftEvent2" Value="SoftEvent 2 auslösen" />
+          <Text TextId="T_SoftEvent3" Value="SoftEvent 3 auslösen" />
+          <Text TextId="T_SoftEvent4" Value="SoftEvent 4 auslösen" />
+          <Text TextId="T_SoftEvent5" Value="SoftEvent 5 auslösen" />
+          <Text TextId="T_SoftEvent6" Value="SoftEvent 6 auslösen" />
+          <Text TextId="T_SoftEvent7" Value="SoftEvent 7 auslösen" />
+          <Text TextId="T_job_control" Value="Jobssteuerungsmodul" />
+          <Text TextId="T_job_control_info" Value="Steuert das Laden des Jobs" />
+          <Text TextId="T_jobname_control" Value="Aktueller Jobname" />
+          <Text TextId="T_jobname_control_info" Value="Steuert das Laden des Jobs über den Dateinamen" />
+          <Text TextId="T_SetCurrentJob" Value="Aktuelle Job-ID vorgeben" />
+          <Text TextId="T_CurrentJob" Value="Aktuelle Jobs-ID" />
+          <Text TextId="T_JobLoadStatus" Value="Jobladestatus" />
+          <Text TextId="T_JobLoading" Value="Job wird geladen" />
+          <Text TextId="T_JobLoadComplete" Value="Schaltet nach dem Laden des Jobs um" />
+          <Text TextId="T_JobLoadFailed" Value="Gesetzt bei fehlgeschlagenem letzten Jobladevorgang" />
+          <Text TextId="T_DataCategory" Value="In-Sight-Datenmodule" />
+          <Text TextId="T_userdata_16" Value="Benutzerdaten - 16 Byte" />
+          <Text TextId="T_userdata_16_info" Value="Schreibt 16 Byte ins In-Sight-Arbeitsblatt" />
+          <Text TextId="T_userdata_32" Value="Benutzerdaten - 32 Byte" />
+          <Text TextId="T_userdata_32_info" Value="Schreibt 32 Byte ins In-Sight-Arbeitsblatt" />
+          <Text TextId="T_userdata_64" Value="Benutzerdaten - 64 Byte" />
+          <Text TextId="T_userdata_64_info" Value="Schreibt 64 Byte ins In-Sight-Arbeitsblatt" />
+          <Text TextId="T_userdata_128" Value="Benutzerdaten - 128 Byte" />
+          <Text TextId="T_userdata_128_info" Value="Schreibt 128 Byte ins In-Sight-Arbeitsblatt" />
+          <Text TextId="T_userdata_256" Value="Benutzerdaten - 256 Byte" />
+          <Text TextId="T_userdata_256_info" Value="Schreibt 256 Byte ins In-Sight-Arbeitsblatt" />
+          <Text TextId="T_UserData" Value="Benutzerdaten" />
+          <Text TextId="T_inspection_results_16" Value="Inspektionsergebnisse - 16 Byte" />
+          <Text TextId="T_inspection_results_16_info" Value="Liest 16 Byte aus dem In-Sight-Arbeitsblatt" />
+          <Text TextId="T_inspection_results_32" Value="Inspektionsergebnisse - 32 Byte" />
+          <Text TextId="T_inspection_results_32_info" Value="Liest 32 Byte aus dem In-Sight-Arbeitsblatt" />
+          <Text TextId="T_inspection_results_64" Value="Inspektionsergebnisse - 64 Byte" />
+          <Text TextId="T_inspection_results_64_info" Value="Liest 64 Byte aus dem In-Sight-Arbeitsblatt" />
+          <Text TextId="T_inspection_results_128" Value="Inspektionsergebnisse - 128 Byte" />
+          <Text TextId="T_inspection_results_128_info" Value="Liest 128 Byte aus dem In-Sight-Arbeitsblatt" />
+          <Text TextId="T_inspection_results_256" Value="Inspektionsergebnisse - 256 Byte" />
+          <Text TextId="T_inspection_results_256_info" Value="Liest 256 Byte aus dem In-Sight-Arbeitsblatt" />
+          <Text TextId="T_InspectionResults" Value="Inspektionsergebnisse" />
+          <Text TextId="T_ResultCode" Value="Ergebniscode" />
+          <Text TextId="T_InspectionCount" Value="Inspektionsanzahl" />
+        </Language>
+        <Language xml:lang="fr">
+          <Text TextId="T_InSight" Value="In-Sight" />
+          <Text TextId="T_FamilyDescription" Value="Capteurs de vision In-Sight" />
+          <Text TextId="T_InSightDescription" Value="Capteur de vision In-Sight" />
+          <Text TextId="T_ControlCategory" Value="Modules de contrôle In-Sight" />
+          <Text TextId="T_acquisition_control" Value="Module de contrôle des  Acquisitions" />
+          <Text TextId="T_acquisition_control_info" Value="Contrôle la capture et l'état En ligne/Hors ligne" />
+          <Text TextId="T_AcquisitionRegister" Value="Registre de contrôle des  Acquisitions" />
+          <Text TextId="T_AcquisitionTriggerEnable" Value="Activer le déclencheur d’acquisition" />
+          <Text TextId="T_AcquisitionTrigger" Value="Déclencheur d'acquisition" />
+          <Text TextId="T_StatusCategory" Value="Modules d'état In-Sight" />
+          <Text TextId="T_acquisition_status" Value="Module d'état des  Acquisitions" />
+          <Text TextId="T_acquisition_status_info" Value="État de la capture et état En ligne/Hors ligne" />
+          <Text TextId="T_AcquisitionStatus" Value="Registre d'état des Acquisitions" />
+          <Text TextId="T_Acquiring" Value="Acquisition" />
+          <Text TextId="T_AcquisitionTriggerReady" Value="Déclencheur d’acquisition prêt" />
+          <Text TextId="T_AcquisitionTriggerAck" Value="AR du déclencheur d’acquisition" />
+          <Text TextId="T_MissedAcquisition" Value="Échec de l’acquisition" />
+          <Text TextId="T_AcquisitionCount" Value="Nombre d’acquisitions" />
+          <Text TextId="T_inspection_status" Value="Module d'état des inspections" />
+          <Text TextId="T_inspection_status_info" Value="État de l'inspection" />
+          <Text TextId="T_InspectionStatus" Value="Registre d'état des inspections" />
+          <Text TextId="T_Inspecting" Value="Inspection" />
+          <Text TextId="T_InspectionCompleted" Value="Fin d'inspection" />
+          <Text TextId="T_ResultsBufferOverrun" Value="Mémoire tampon de résultats saturée" />
+          <Text TextId="T_ResultsValid" Value="Résultats valides" />
+          <Text TextId="T_inspection_control" Value="Module de contrôle des inspections" />
+          <Text TextId="T_inspection_control_info" Value="Contrôle l'inspection" />
+          <Text TextId="T_InspectionRegister" Value="Registre de contrôle des inspections" />
+          <Text TextId="T_ResultsBufferingEnable" Value="Mettre les résultats en mémoire tampon" />
+          <Text TextId="T_InspectionResultsAck" Value="AR des résultats de l'inspection" />
+          <Text TextId="T_SetOffline" Value="Mettre hors ligne" />
+          <Text TextId="T_OfflineReason" Value="Motif : hors ligne" />
+          <Text TextId="T_Online" Value="En ligne" />
+          <Text TextId="T_softevents" Value="Module de contrôle des événements Soft" />
+          <Text TextId="T_softevents_info" Value="Déclenche les événements Soft" />
+          <Text TextId="T_SoftEventRegister" Value="Module de contrôle des événements Soft" />
+          <Text TextId="T_SoftEvent0" Value="Déclencher événement Soft 0" />
+          <Text TextId="T_SoftEvent1" Value="Déclencher événement Soft 1" />
+          <Text TextId="T_SoftEvent2" Value="Déclencher événement Soft 2" />
+          <Text TextId="T_SoftEvent3" Value="Déclencher événement Soft 3" />
+          <Text TextId="T_SoftEvent4" Value="Déclencher événement Soft 4" />
+          <Text TextId="T_SoftEvent5" Value="Déclencher événement Soft 5" />
+          <Text TextId="T_SoftEvent6" Value="Déclencher événement Soft 6" />
+          <Text TextId="T_SoftEvent7" Value="Déclencher événement Soft 7" />
+          <Text TextId="T_job_control" Value="Module de contrôle des projets" />
+          <Text TextId="T_job_control_info" Value="Contrôle le chargement du projet" />
+          <Text TextId="T_jobname_control" Value="Nom du projet actuel" />
+          <Text TextId="T_jobname_control_info" Value="Contrôle le chargement des projets par nom de fichier" />
+          <Text TextId="T_SetCurrentJob" Value="Définir le n° du projet actuel" />
+          <Text TextId="T_CurrentJob" Value="N° du projet actuel" />
+          <Text TextId="T_JobLoadStatus" Value="État de chargement du projet" />
+          <Text TextId="T_JobLoading" Value="Chargement du projet" />
+          <Text TextId="T_JobLoadComplete" Value="Changer de vue une fois le projet chargé" />
+          <Text TextId="T_JobLoadFailed" Value="Définir en cas d'échec de chargement du dernier projet" />
+          <Text TextId="T_DataCategory" Value="Modules de données In-Sight" />
+          <Text TextId="T_userdata_16" Value="Données utilisateur - 16 octets" />
+          <Text TextId="T_userdata_16_info" Value="Écrit 16 octets dans le tableur In-Sight" />
+          <Text TextId="T_userdata_32" Value="Données utilisateur - 32 octets" />
+          <Text TextId="T_userdata_32_info" Value="Écrit 32 octets dans le tableur In-Sight" />
+          <Text TextId="T_userdata_64" Value="Données utilisateur - 64 octets" />
+          <Text TextId="T_userdata_64_info" Value="Écrit 64 octets dans le tableur In-Sight" />
+          <Text TextId="T_userdata_128" Value="Données utilisateur - 128 octets" />
+          <Text TextId="T_userdata_128_info" Value="Écrit 128 octets dans le tableur In-Sight" />
+          <Text TextId="T_userdata_256" Value="Données utilisateur - 256 octets" />
+          <Text TextId="T_userdata_256_info" Value="Écrit 256 octets dans le tableur In-Sight" />
+          <Text TextId="T_UserData" Value="Données utilisateur" />
+          <Text TextId="T_inspection_results_16" Value="Résultats de l'inspection - 16 octets" />
+          <Text TextId="T_inspection_results_16_info" Value="Lit 16 octets du tableur In-Sight" />
+          <Text TextId="T_inspection_results_32" Value="Résultats de l'inspection - 32 octets" />
+          <Text TextId="T_inspection_results_32_info" Value="Lit 32 octets du tableur In-Sight" />
+          <Text TextId="T_inspection_results_64" Value="Résultats de l'inspection - 64 octets" />
+          <Text TextId="T_inspection_results_64_info" Value="Lit 64 octets du tableur In-Sight" />
+          <Text TextId="T_inspection_results_128" Value="Résultats de l'inspection - 128 octets" />
+          <Text TextId="T_inspection_results_128_info" Value="Lit 128 octets du tableur In-Sight" />
+          <Text TextId="T_inspection_results_256" Value="Résultats de l'inspection - 256 octets" />
+          <Text TextId="T_inspection_results_256_info" Value="Lit 256 octets du tableur In-Sight" />
+          <Text TextId="T_InspectionResults" Value="Résultats de l'inspection" />
+          <Text TextId="T_ResultCode" Value="Code de résultat" />
+          <Text TextId="T_InspectionCount" Value="Nombre d'inspections" />
+        </Language>
+        <Language xml:lang="es">
+          <Text TextId="T_InSight" Value="In-Sight" />
+          <Text TextId="T_FamilyDescription" Value="Sensores de visión In-Sight" />
+          <Text TextId="T_InSightDescription" Value="Sensor de visión In-Sight" />
+          <Text TextId="T_ControlCategory" Value="Módulos de control de In-Sight" />
+          <Text TextId="T_acquisition_control" Value="Módulo de control de adquisición" />
+          <Text TextId="T_acquisition_control_info" Value="Controla la adquisición y en línea/sin conexión" />
+          <Text TextId="T_AcquisitionRegister" Value="Registro del control de adquisición" />
+          <Text TextId="T_AcquisitionTriggerEnable" Value="Habilitar disparador de adquisición" />
+          <Text TextId="T_AcquisitionTrigger" Value="Disparador de adquisición" />
+          <Text TextId="T_StatusCategory" Value="Módulos de estado de In-Sight" />
+          <Text TextId="T_acquisition_status" Value="Módulo de estado de adquisición" />
+          <Text TextId="T_acquisition_status_info" Value="Estado de la adquisición y del estado en línea/sin conexión" />
+          <Text TextId="T_AcquisitionStatus" Value="Registro del estado de adquisición" />
+          <Text TextId="T_Acquiring" Value="Adquiriendo" />
+          <Text TextId="T_AcquisitionTriggerReady" Value="Disparador de adquisición listo" />
+          <Text TextId="T_AcquisitionTriggerAck" Value="Confirmación de disparador de adquisición" />
+          <Text TextId="T_MissedAcquisition" Value="Adquisición fallida" />
+          <Text TextId="T_AcquisitionCount" Value="Recuento de adquisiciones" />
+          <Text TextId="T_inspection_status" Value="Módulo de estado de la inspección" />
+          <Text TextId="T_inspection_status_info" Value="Estado de la inspección" />
+          <Text TextId="T_InspectionStatus" Value="Registro del estado de inspección" />
+          <Text TextId="T_Inspecting" Value="Inspeccionando" />
+          <Text TextId="T_InspectionCompleted" Value="Inspección terminada" />
+          <Text TextId="T_ResultsBufferOverrun" Value="Saturación del búfer de resultados" />
+          <Text TextId="T_ResultsValid" Value="Resultados válidos" />
+          <Text TextId="T_inspection_control" Value="Módulo de control de inspección" />
+          <Text TextId="T_inspection_control_info" Value="Controla la inspección" />
+          <Text TextId="T_InspectionRegister" Value="Registro del control de inspección" />
+          <Text TextId="T_ResultsBufferingEnable" Value="Habilitar almacenamiento de resultados" />
+          <Text TextId="T_InspectionResultsAck" Value="Confirmar resultados de la inspección" />
+          <Text TextId="T_SetOffline" Value="Establecer sin conexión" />
+          <Text TextId="T_OfflineReason" Value="Razón sin conexión" />
+          <Text TextId="T_Online" Value="En línea" />
+          <Text TextId="T_softevents" Value="Módulo de control de SoftEvent" />
+          <Text TextId="T_softevents_info" Value="Disparar SoftEvents" />
+          <Text TextId="T_SoftEventRegister" Value="Módulo de control de SoftEvent" />
+          <Text TextId="T_SoftEvent0" Value="Disparar SoftEvent 0" />
+          <Text TextId="T_SoftEvent1" Value="Disparar SoftEvent 1" />
+          <Text TextId="T_SoftEvent2" Value="Disparar SoftEvent 2" />
+          <Text TextId="T_SoftEvent3" Value="Disparar SoftEvent 3" />
+          <Text TextId="T_SoftEvent4" Value="Disparar SoftEvent 4" />
+          <Text TextId="T_SoftEvent5" Value="Disparar SoftEvent 5" />
+          <Text TextId="T_SoftEvent6" Value="Disparar SoftEvent 6" />
+          <Text TextId="T_SoftEvent7" Value="Disparar SoftEvent 7" />
+          <Text TextId="T_job_control" Value="Módulo de control de tarea" />
+          <Text TextId="T_job_control_info" Value="Controla la carga de tareas" />
+          <Text TextId="T_jobname_control" Value="Nombre de tarea actual" />
+          <Text TextId="T_jobname_control_info" Value="Controla la carga de tareas según nombre de archivo" />
+          <Text TextId="T_SetCurrentJob" Value="Establecer ID de tarea actual" />
+          <Text TextId="T_CurrentJob" Value="ID de tarea actual" />
+          <Text TextId="T_JobLoadStatus" Value="Estado de la carga de tarea" />
+          <Text TextId="T_JobLoading" Value="Carga de tarea" />
+          <Text TextId="T_JobLoadComplete" Value="Cambia cuando la carga de tarea finaliza" />
+          <Text TextId="T_JobLoadFailed" Value="Se ajusta cuando la carga de la última tarea ha fallado" />
+          <Text TextId="T_DataCategory" Value="Módulos de datos de In-Sight" />
+          <Text TextId="T_userdata_16" Value="Información de usuario - 16 bytes" />
+          <Text TextId="T_userdata_16_info" Value="Escribe 16 bytes en la hoja de cálculo de In-Sight" />
+          <Text TextId="T_userdata_32" Value="Información de usuario - 32 bytes" />
+          <Text TextId="T_userdata_32_info" Value="Escribe 32 bytes en la hoja de cálculo de In-Sight" />
+          <Text TextId="T_userdata_64" Value="Información de usuario - 64 bytes" />
+          <Text TextId="T_userdata_64_info" Value="Escribe 64 bytes en la hoja de cálculo de In-Sight" />
+          <Text TextId="T_userdata_128" Value="Información de usuario - 128 bytes" />
+          <Text TextId="T_userdata_128_info" Value="Escribe 128 bytes en la hoja de cálculo de In-Sight" />
+          <Text TextId="T_userdata_256" Value="Información de usuario - 256 bytes" />
+          <Text TextId="T_userdata_256_info" Value="Escribe 256 bytes en la hoja de cálculo de In-Sight" />
+          <Text TextId="T_UserData" Value="Información de usuario" />
+          <Text TextId="T_inspection_results_16" Value="Resultados de la inspección - 16 bytes" />
+          <Text TextId="T_inspection_results_16_info" Value="Lee 16 bytes de la hoja de cálculo de In-Sight" />
+          <Text TextId="T_inspection_results_32" Value="Resultados de la inspección - 32 bytes" />
+          <Text TextId="T_inspection_results_32_info" Value="Lee 32 bytes de la hoja de cálculo de In-Sight" />
+          <Text TextId="T_inspection_results_64" Value="Resultados de la inspección - 64 bytes" />
+          <Text TextId="T_inspection_results_64_info" Value="Lee 64 bytes de la hoja de cálculo de In-Sight" />
+          <Text TextId="T_inspection_results_128" Value="Resultados de la inspección - 128 bytes" />
+          <Text TextId="T_inspection_results_128_info" Value="Lee 128 bytes de la hoja de cálculo de In-Sight" />
+          <Text TextId="T_inspection_results_256" Value="Resultados de la inspección - 256 bytes" />
+          <Text TextId="T_inspection_results_256_info" Value="Lee 256 bytes de la hoja de cálculo de In-Sight" />
+          <Text TextId="T_InspectionResults" Value="Resultados de la inspección" />
+          <Text TextId="T_ResultCode" Value="Código resultante" />
+          <Text TextId="T_InspectionCount" Value="Recuento de inspecciones" />
+        </Language>
+        <Language xml:lang="ja">
+          <Text TextId="T_InSight" Value="In-Sight" />
+          <Text TextId="T_FamilyDescription" Value="In-Sightビジョンセンサ" />
+          <Text TextId="T_InSightDescription" Value="In-Sightビジョンセンサ" />
+          <Text TextId="T_ControlCategory" Value="In-Sight制御モジュール" />
+          <Text TextId="T_acquisition_control" Value="画像取り込み制御モジュール" />
+          <Text TextId="T_acquisition_control_info" Value="画像取り込みとオンライン/オフラインを制御する" />
+          <Text TextId="T_AcquisitionRegister" Value="画像取り込み制御レジスタ" />
+          <Text TextId="T_AcquisitionTriggerEnable" Value="画像取り込みトリガ有効" />
+          <Text TextId="T_AcquisitionTrigger" Value="画像取り込みトリガ" />
+          <Text TextId="T_StatusCategory" Value="In-Sightステータスモジュール" />
+          <Text TextId="T_acquisition_status" Value="画像取り込みステータスモジュール" />
+          <Text TextId="T_acquisition_status_info" Value="画像取り込みとオンライン/オフラインのステータス" />
+          <Text TextId="T_AcquisitionStatus" Value="画像取り込みステータスレジスタ" />
+          <Text TextId="T_Acquiring" Value="画像取り込み中" />
+          <Text TextId="T_AcquisitionTriggerReady" Value="画像取り込みトリガ待ち" />
+          <Text TextId="T_AcquisitionTriggerAck" Value="画像取り込みトリガ応答" />
+          <Text TextId="T_MissedAcquisition" Value="画像取り込みミス" />
+          <Text TextId="T_AcquisitionCount" Value="画像取り込み回数" />
+          <Text TextId="T_inspection_status" Value="検査ステータスモジュール" />
+          <Text TextId="T_inspection_status_info" Value="検査のステータス" />
+          <Text TextId="T_InspectionStatus" Value="検査ステータスレジスタ" />
+          <Text TextId="T_Inspecting" Value="検査中" />
+          <Text TextId="T_InspectionCompleted" Value="検査完了" />
+          <Text TextId="T_ResultsBufferOverrun" Value="結果バッファオーバーラン" />
+          <Text TextId="T_ResultsValid" Value="結果確定" />
+          <Text TextId="T_inspection_control" Value="検査制御モジュール" />
+          <Text TextId="T_inspection_control_info" Value="検査を制御する" />
+          <Text TextId="T_InspectionRegister" Value="検査制御レジスタ" />
+          <Text TextId="T_ResultsBufferingEnable" Value="結果バッファリングを行う" />
+          <Text TextId="T_InspectionResultsAck" Value="検査結果の応答" />
+          <Text TextId="T_SetOffline" Value="オフラインにする" />
+          <Text TextId="T_OfflineReason" Value="オフライン理由" />
+          <Text TextId="T_Online" Value="オンライン" />
+          <Text TextId="T_softevents" Value="ソフトイベント制御モジュール" />
+          <Text TextId="T_softevents_info" Value="ソフトイベントをトリガする" />
+          <Text TextId="T_SoftEventRegister" Value="ソフトイベント制御モジュール" />
+          <Text TextId="T_SoftEvent0" Value="ソフト0イベントをトリガする" />
+          <Text TextId="T_SoftEvent1" Value="ソフト1イベントをトリガする" />
+          <Text TextId="T_SoftEvent2" Value="ソフト2イベントをトリガする" />
+          <Text TextId="T_SoftEvent3" Value="ソフト3イベントをトリガする" />
+          <Text TextId="T_SoftEvent4" Value="ソフト4イベントをトリガする" />
+          <Text TextId="T_SoftEvent5" Value="ソフト5イベントをトリガする" />
+          <Text TextId="T_SoftEvent6" Value="ソフト6イベントをトリガする" />
+          <Text TextId="T_SoftEvent7" Value="ソフト7イベントをトリガする" />
+          <Text TextId="T_job_control" Value="ジョブ制御モジュール" />
+          <Text TextId="T_job_control_info" Value="ジョブのロードを制御する" />
+          <Text TextId="T_jobname_control" Value="現在のジョブ名" />
+          <Text TextId="T_jobname_control_info" Value="ファイル名でジョブのロードを制御する" />
+          <Text TextId="T_SetCurrentJob" Value="現在のジョブIDをセット" />
+          <Text TextId="T_CurrentJob" Value="現在のジョブID" />
+          <Text TextId="T_JobLoadStatus" Value="ジョブロードステータス" />
+          <Text TextId="T_JobLoading" Value="ジョブのロード中" />
+          <Text TextId="T_JobLoadComplete" Value="ジョブのロード完了でトグル切り替え" />
+          <Text TextId="T_JobLoadFailed" Value="ジョブのロード失敗でセット" />
+          <Text TextId="T_DataCategory" Value="In-Sightデータモジュール" />
+          <Text TextId="T_userdata_16" Value="ユーザデータ - 16バイト" />
+          <Text TextId="T_userdata_16_info" Value="In-Sightスプレッドシートに16バイトを書き込む" />
+          <Text TextId="T_userdata_32" Value="ユーザデータ - 32バイト" />
+          <Text TextId="T_userdata_32_info" Value="In-Sightスプレッドシートに32バイトを書き込む" />
+          <Text TextId="T_userdata_64" Value="ユーザデータ - 64バイト" />
+          <Text TextId="T_userdata_64_info" Value="In-Sightスプレッドシートに64バイトを書き込む" />
+          <Text TextId="T_userdata_128" Value="ユーザデータ - 128バイト" />
+          <Text TextId="T_userdata_128_info" Value="In-Sightスプレッドシートに128バイトを書き込む" />
+          <Text TextId="T_userdata_256" Value="ユーザデータ - 256バイト" />
+          <Text TextId="T_userdata_256_info" Value="In-Sightスプレッドシートに256バイトを書き込む" />
+          <Text TextId="T_UserData" Value="ユーザ用" />
+          <Text TextId="T_inspection_results_16" Value="検査結果 - 16バイト" />
+          <Text TextId="T_inspection_results_16_info" Value="In-Sightスプレッドシートから16バイトを読み取る" />
+          <Text TextId="T_inspection_results_32" Value="検査結果 - 32バイト" />
+          <Text TextId="T_inspection_results_32_info" Value="In-Sightスプレッドシートから32バイトを読み取る" />
+          <Text TextId="T_inspection_results_64" Value="検査結果 - 64バイト" />
+          <Text TextId="T_inspection_results_64_info" Value="In-Sightスプレッドシートから64バイトを読み取る" />
+          <Text TextId="T_inspection_results_128" Value="検査結果 - 128バイト" />
+          <Text TextId="T_inspection_results_128_info" Value="In-Sightスプレッドシートから128バイトを読み取る" />
+          <Text TextId="T_inspection_results_256" Value="検査結果 - 256バイト" />
+          <Text TextId="T_inspection_results_256_info" Value="In-Sightスプレッドシートから256バイトを読み取る" />
+          <Text TextId="T_InspectionResults" Value="検査結果" />
+          <Text TextId="T_ResultCode" Value="結果コード" />
+          <Text TextId="T_InspectionCount" Value="検査回数" />
+        </Language>
+        <Language xml:lang="ko">
+          <Text TextId="T_InSight" Value="In-Sight" />
+          <Text TextId="T_FamilyDescription" Value="In-Sight 비전 센서" />
+          <Text TextId="T_InSightDescription" Value="In-Sight 비전 센서" />
+          <Text TextId="T_ControlCategory" Value="In-Sight 제어 모듈" />
+          <Text TextId="T_acquisition_control" Value="인식 제어 모듈" />
+          <Text TextId="T_acquisition_control_info" Value="인식 제어 및 온라인/오프라인" />
+          <Text TextId="T_AcquisitionRegister" Value="인식 제어 등록" />
+          <Text TextId="T_AcquisitionTriggerEnable" Value="인식 트리거 활성화" />
+          <Text TextId="T_AcquisitionTrigger" Value="인식 트리거" />
+          <Text TextId="T_StatusCategory" Value="In-Sight 제어 모듈" />
+          <Text TextId="T_acquisition_status" Value="인식 상태 모듈" />
+          <Text TextId="T_acquisition_status_info" Value="인식 상태 및 온라인/오프라인 상태" />
+          <Text TextId="T_AcquisitionStatus" Value="인식 상태 등록" />
+          <Text TextId="T_Acquiring" Value="인식" />
+          <Text TextId="T_AcquisitionTriggerReady" Value="인식 트리거 준비완료" />
+          <Text TextId="T_AcquisitionTriggerAck" Value="인식 트리거 확인" />
+          <Text TextId="T_MissedAcquisition" Value="인식 분실" />
+          <Text TextId="T_AcquisitionCount" Value="인식 카운트" />
+          <Text TextId="T_inspection_status" Value="검사 상태 모듈" />
+          <Text TextId="T_inspection_status_info" Value="검사 상태" />
+          <Text TextId="T_InspectionStatus" Value="검사 상태 등록" />
+          <Text TextId="T_Inspecting" Value="검사" />
+          <Text TextId="T_InspectionCompleted" Value="검사 완료" />
+          <Text TextId="T_ResultsBufferOverrun" Value="결과 버퍼 오버런" />
+          <Text TextId="T_ResultsValid" Value="결과 유효" />
+          <Text TextId="T_inspection_control" Value="검사 제어 모듈" />
+          <Text TextId="T_inspection_control_info" Value="검사 제어" />
+          <Text TextId="T_InspectionRegister" Value="검사 제어 등록" />
+          <Text TextId="T_ResultsBufferingEnable" Value="결과 버퍼링 활성화" />
+          <Text TextId="T_InspectionResultsAck" Value="검사 결과 확인" />
+          <Text TextId="T_SetOffline" Value="오프라인 설정" />
+          <Text TextId="T_OfflineReason" Value="오프라인 사유" />
+          <Text TextId="T_Online" Value="온라인" />
+          <Text TextId="T_softevents" Value="SoftEvent 제어 모듈" />
+          <Text TextId="T_softevents_info" Value="SoftEvents 트리거" />
+          <Text TextId="T_SoftEventRegister" Value="SoftEvent 제어 모듈" />
+          <Text TextId="T_SoftEvent0" Value="SoftEvent 0 트리거" />
+          <Text TextId="T_SoftEvent1" Value="SoftEvent 1 트리거" />
+          <Text TextId="T_SoftEvent2" Value="SoftEvent 2 트리거" />
+          <Text TextId="T_SoftEvent3" Value="SoftEvent 3 트리거" />
+          <Text TextId="T_SoftEvent4" Value="SoftEvent 4 트리거" />
+          <Text TextId="T_SoftEvent5" Value="SoftEvent 5 트리거" />
+          <Text TextId="T_SoftEvent6" Value="SoftEvent 6 트리거" />
+          <Text TextId="T_SoftEvent7" Value="SoftEvent 7 트리거" />
+          <Text TextId="T_job_control" Value="작업 제어 모듈" />
+          <Text TextId="T_job_control_info" Value="작업 로딩 제어" />
+          <Text TextId="T_jobname_control" Value="현재 작업 이름" />
+          <Text TextId="T_jobname_control_info" Value="파일 이름으로 작업 로딩 제어" />
+          <Text TextId="T_SetCurrentJob" Value="현재 작업 ID" />
+          <Text TextId="T_CurrentJob" Value="현재 작업 ID" />
+          <Text TextId="T_JobLoadStatus" Value="작업 로드 상황" />
+          <Text TextId="T_JobLoading" Value="작업 로딩" />
+          <Text TextId="T_JobLoadComplete" Value="작업 로드 완료 시 토글" />
+          <Text TextId="T_JobLoadFailed" Value="마지막 작업 로드 실패 시 설정" />
+          <Text TextId="T_DataCategory" Value="In-Sight 데이터 모듈" />
+          <Text TextId="T_userdata_16" Value="사용자 데이터 -16 바이트" />
+          <Text TextId="T_userdata_16_info" Value="In-Sight 스프레드쉬트로 16 바이트 쓰기" />
+          <Text TextId="T_userdata_32" Value="사용자 데이터 -32 바이트" />
+          <Text TextId="T_userdata_32_info" Value="In-Sight 스프레드쉬트로 32 바이트 쓰기" />
+          <Text TextId="T_userdata_64" Value="사용자 데이터 -64 바이트" />
+          <Text TextId="T_userdata_64_info" Value="In-Sight 스프레드쉬트로 64 바이트 쓰기" />
+          <Text TextId="T_userdata_128" Value="사용자 데이터 – 128 바이트" />
+          <Text TextId="T_userdata_128_info" Value="In-Sight 스프레드쉬트로 128 바이트 쓰기" />
+          <Text TextId="T_userdata_256" Value="사용자 데이터 -256 바이트" />
+          <Text TextId="T_userdata_256_info" Value="In-Sight 스프레드쉬트로 256 바이트 쓰기" />
+          <Text TextId="T_UserData" Value="사용자 데이터" />
+          <Text TextId="T_inspection_results_16" Value="검사 결과 - 16 바이트" />
+          <Text TextId="T_inspection_results_16_info" Value="In-Sight 스프레드쉬트에서 16 바이트 읽기" />
+          <Text TextId="T_inspection_results_32" Value="검사 결과 - 32 바이트" />
+          <Text TextId="T_inspection_results_32_info" Value="In-Sight 스프레드쉬트에서 32 바이트 읽기" />
+          <Text TextId="T_inspection_results_64" Value="검사 결과 - 64 바이트" />
+          <Text TextId="T_inspection_results_64_info" Value="In-Sight 스프레드쉬트에서 64 바이트 읽기" />
+          <Text TextId="T_inspection_results_128" Value="검사 결과 – 128 바이트" />
+          <Text TextId="T_inspection_results_128_info" Value="In-Sight 스프레드쉬트에서 128 바이트 읽기" />
+          <Text TextId="T_inspection_results_256" Value="검사 결과 - 256 바이트" />
+          <Text TextId="T_inspection_results_256_info" Value="In-Sight 스프레드쉬트에서 256 바이트 읽기" />
+          <Text TextId="T_InspectionResults" Value="검사 결과" />
+          <Text TextId="T_ResultCode" Value="결과 코드" />
+          <Text TextId="T_InspectionCount" Value="검사 카운트" />
+        </Language>
+        <Language xml:lang="zh">
+          <Text TextId="T_InSight" Value="In-Sight" />
+          <Text TextId="T_FamilyDescription" Value="In-Sight 视觉传感器" />
+          <Text TextId="T_InSightDescription" Value="In-Sight 视觉传感器" />
+          <Text TextId="T_ControlCategory" Value="In-Sight 控制模块" />
+          <Text TextId="T_acquisition_control" Value="采集控制模块" />
+          <Text TextId="T_acquisition_control_info" Value="控制采集和联机/脱机" />
+          <Text TextId="T_AcquisitionRegister" Value="采集控制寄存器" />
+          <Text TextId="T_AcquisitionTriggerEnable" Value="采集触发器启用" />
+          <Text TextId="T_AcquisitionTrigger" Value="采集触发器" />
+          <Text TextId="T_StatusCategory" Value="In-Sight 状态模块" />
+          <Text TextId="T_acquisition_status" Value="采集状态模块" />
+          <Text TextId="T_acquisition_status_info" Value="采集状态和联机/脱机状态" />
+          <Text TextId="T_AcquisitionStatus" Value="采集状态寄存器" />
+          <Text TextId="T_Acquiring" Value="采集" />
+          <Text TextId="T_AcquisitionTriggerReady" Value="采集触发器就绪" />
+          <Text TextId="T_AcquisitionTriggerAck" Value="采集触发器确认" />
+          <Text TextId="T_MissedAcquisition" Value="错过采集" />
+          <Text TextId="T_AcquisitionCount" Value="采集计数" />
+          <Text TextId="T_inspection_status" Value="检测状态模块" />
+          <Text TextId="T_inspection_status_info" Value="检测的状态" />
+          <Text TextId="T_InspectionStatus" Value="检测状态寄存器" />
+          <Text TextId="T_Inspecting" Value="正在检测" />
+          <Text TextId="T_InspectionCompleted" Value="检测已完成" />
+          <Text TextId="T_ResultsBufferOverrun" Value="结果缓冲超时运行" />
+          <Text TextId="T_ResultsValid" Value="结果有效" />
+          <Text TextId="T_inspection_control" Value="检测控制模块" />
+          <Text TextId="T_inspection_control_info" Value="控制检测" />
+          <Text TextId="T_InspectionRegister" Value="检测控制寄存器" />
+          <Text TextId="T_ResultsBufferingEnable" Value="启用结果缓冲" />
+          <Text TextId="T_InspectionResultsAck" Value="确认检测结果" />
+          <Text TextId="T_SetOffline" Value="设置脱机" />
+          <Text TextId="T_OfflineReason" Value="脱机原因" />
+          <Text TextId="T_Online" Value="联机" />
+          <Text TextId="T_softevents" Value="SoftEvent 控制模块" />
+          <Text TextId="T_softevents_info" Value="触发器 SoftEvent" />
+          <Text TextId="T_SoftEventRegister" Value="SoftEvent 控制模块" />
+          <Text TextId="T_SoftEvent0" Value="触发器 SoftEvent 0" />
+          <Text TextId="T_SoftEvent1" Value="触发器 SoftEvent 1" />
+          <Text TextId="T_SoftEvent2" Value="触发器 SoftEvent 2" />
+          <Text TextId="T_SoftEvent3" Value="触发器 SoftEvent 3" />
+          <Text TextId="T_SoftEvent4" Value="触发器 SoftEvent 4" />
+          <Text TextId="T_SoftEvent5" Value="触发器 SoftEvent 5" />
+          <Text TextId="T_SoftEvent6" Value="触发器 SoftEvent 6" />
+          <Text TextId="T_SoftEvent7" Value="触发器 SoftEvent 7" />
+          <Text TextId="T_job_control" Value="作业控制模块" />
+          <Text TextId="T_job_control_info" Value="控制作业正在加载" />
+          <Text TextId="T_jobname_control" Value="当前作业名称" />
+          <Text TextId="T_jobname_control_info" Value="按文件名控制作业加载" />
+          <Text TextId="T_SetCurrentJob" Value="设置当前作业 ID" />
+          <Text TextId="T_CurrentJob" Value="当前作业 ID" />
+          <Text TextId="T_JobLoadStatus" Value="作业加载状态" />
+          <Text TextId="T_JobLoading" Value="作业正在加载" />
+          <Text TextId="T_JobLoadComplete" Value="作业加载完成后切换" />
+          <Text TextId="T_JobLoadFailed" Value="最后一个作业加载失败时设置" />
+          <Text TextId="T_DataCategory" Value="In-Sight 数据模块" />
+          <Text TextId="T_userdata_16" Value="用户数据 - 16 个字节" />
+          <Text TextId="T_userdata_16_info" Value="向 In-Sight 电子表格写入 16 个字节" />
+          <Text TextId="T_userdata_32" Value="用户数据 - 32 个字节" />
+          <Text TextId="T_userdata_32_info" Value="向 In-Sight 电子表格写入 32 个字节" />
+          <Text TextId="T_userdata_64" Value="用户数据 - 64 个字节" />
+          <Text TextId="T_userdata_64_info" Value="向 In-Sight 电子表格写入 64 个字节" />
+          <Text TextId="T_userdata_128" Value="用户数据 - 128 个字节" />
+          <Text TextId="T_userdata_128_info" Value="向 In-Sight 电子表格写入 128 个字节" />
+          <Text TextId="T_userdata_256" Value="用户数据 - 256 个字节" />
+          <Text TextId="T_userdata_256_info" Value="向 In-Sight 电子表格写入 256 个字节" />
+          <Text TextId="T_UserData" Value="用户数据" />
+          <Text TextId="T_inspection_results_16" Value="检测结果 - 16 个字节" />
+          <Text TextId="T_inspection_results_16_info" Value="从 In-Sight 电子表格中读取 16 个字节" />
+          <Text TextId="T_inspection_results_32" Value="检测结果 - 32 个字节" />
+          <Text TextId="T_inspection_results_32_info" Value="从 In-Sight 电子表格中读取 32 个字节" />
+          <Text TextId="T_inspection_results_64" Value="检测结果 - 64 个字节" />
+          <Text TextId="T_inspection_results_64_info" Value="从 In-Sight 电子表格中读取 64 个字节" />
+          <Text TextId="T_inspection_results_128" Value="检测结果 - 128 字节" />
+          <Text TextId="T_inspection_results_128_info" Value="从 In-Sight 电子表格中读取 128 个字节" />
+          <Text TextId="T_inspection_results_256" Value="检测结果 - 256 个字节" />
+          <Text TextId="T_inspection_results_256_info" Value="从 In-Sight 电子表格中读取 256 个字节" />
+          <Text TextId="T_InspectionResults" Value="检测结果" />
+          <Text TextId="T_ResultCode" Value="结果码" />
+          <Text TextId="T_InspectionCount" Value="检测计数" />
+        </Language>
+      </ExternalTextList>
+    </ApplicationProcess>
+  </ProfileBody>
+</ISO15745Profile>
