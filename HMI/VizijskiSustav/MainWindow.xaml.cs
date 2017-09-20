@@ -33,7 +33,7 @@ namespace VizijskiSustav
            
             Dispatcher.BeginInvoke(new Action(() =>
             {
-               kjlkjk
+               
             })) ;
 
         }
