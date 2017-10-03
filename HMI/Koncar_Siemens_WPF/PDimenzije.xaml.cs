@@ -17,7 +17,6 @@ using Microsoft.VisualBasic;
 using System.Data;
 using SpreadsheetLight;
 using Snap7;
-using PrepoznavanjeOblika;
 using System.IO;
 using System.Threading;
 using Microsoft.Win32;
@@ -313,7 +312,7 @@ namespace VizijskiSustavWPF
             App.AutoSearch.CompTol = 200;
             App.AutoSearch.PosTol = 200;
             App.AutoSearch.Td = 200;
-            App.AutoSearch.VidljiveTocke = App.ObjectFound.POINTS.ToList<System.Drawing.PointF>();
+            //App.AutoSearch.VidljiveTocke = App.ObjectFound.POINTS.ToList<System.Drawing.PointF>();
             App.AutoSearch.Xdim = 2058;
             App.AutoSearch.Ydim = 2448;
             App.AutoSearch.Algoritam();

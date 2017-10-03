@@ -7,7 +7,7 @@ using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Threading.Tasks;
 using System.Windows;
-using PrepoznavanjeOblika;
+
 
 namespace VizijskiSustavWPF
 {
@@ -31,8 +31,7 @@ namespace VizijskiSustavWPF
         public static reportInterface MainReportInterface;
         public static Algoritmi AutoSearch = new Algoritmi();
 
-        public static CameraOutputType CameraOutput = new CameraOutputType();
-        public static CameraOutputForAutoTracking ObjectFound = new CameraOutputForAutoTracking();
+      
 
         int cameraMissCounter = 0;
         public App()
@@ -59,7 +58,7 @@ namespace VizijskiSustavWPF
             //App.CamUI.DataReady += new PrepoznavanjeOblika.CameraUI.DataReadyHandler(CamUI_DataReady);
             //App.CamUI.OnCameraOnlineChanged += new PrepoznavanjeOblika.CameraUI.CameraOnlineHandler(CamUI_CameraOnlineChanged);
 
-            CameraOutput.TYPE = objectType.NONE;
+          
 
             
         }
@@ -80,56 +79,9 @@ namespace VizijskiSustavWPF
             mwHandle.tb_statusMessage.Dispatcher.BeginInvoke((Action)(() => { mwHandle.tb_statusMessage.Text = msg; }));
         }
 
-        private void CamUI_DataReady(object sender, PrepoznavanjeOblika.CameraUIEventArgs data)
-        {
-            // Slanje cameraOutputa u PLC
-            Dispatcher.BeginInvoke((Action)(() =>
-            {
-                try
-                {
-                    if (data.CameraOutput.TYPE != objectType.NONE)
-                    {
-                        //App.PLC.WriteCameraOutput(data.CameraOutput);
-                        cameraMissCounter = 0;
+        
 
-                    }
-                    //else if (data.CameraOutput.TYPE == objectType.NONE && CameraOutput.TYPE != objectType.NONE)
-                    else if (data.CameraOutput.TYPE == objectType.NONE)
-                    {
-
-                        // Prije je bio neki objekt, a sad ga više nema -> upiši NONE u PLC
-                        //App.PLC.WriteTag(App.PLC.CONTROL.RotacijskaOs.Point.TYPE, (short)data.CameraOutput.TYPE);
-                        cameraMissCounter++;
-
-                    }
-
-                    // Pohrani nove vrijednosti za sljedeći prolaz i za page PRucno
-                    CameraOutput = data.CameraOutput;
-                    ObjectFound = data.ObjectFound;
-                    if (cameraMissCounter > 5)
-                    {
-                        AutoSearch.ObjectLost = true;
-                    }
-                    else
-                    {
-                        AutoSearch.ObjectLost = false;
-                    }
-                }
-                catch
-                { }
-            }));
-        }
-
-        // Event handler koji se poziva kad kamera postane online ili offline (Ethernet kabel se spoji ili odspoji).
-        private void CamUI_CameraOnlineChanged(object sender, PrepoznavanjeOblika.CameraOnlineEventArgs data)
-        {
-            if (mwHandle != null)
-            {
-                if (data.CameraOnline) mwHandle.tb_cameraOnline.Dispatcher.BeginInvoke((Action)(() => mwHandle.tb_cameraOnline.Text = "Camera: Online"));
-                else mwHandle.tb_cameraOnline.Dispatcher.BeginInvoke((Action)(() => mwHandle.tb_cameraOnline.Text = "Camera: Offline"));
-            }
-        }
-
+      
         // Event handler koji se poziva kad PLC postane online ili offline (Ethernet kabel se spoji ili odspoji).
         private void PLCInterface_PLCOnlineChanged(object sender, OnlineMarkerEventArgs e)
         {

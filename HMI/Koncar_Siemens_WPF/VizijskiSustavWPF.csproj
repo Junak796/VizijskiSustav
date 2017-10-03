@@ -90,9 +90,6 @@
     <Reference Include="OxyPlot.Xps">
       <HintPath>..\packages\OxyPlot.Wpf.2015.1.902-alpha\lib\net45\OxyPlot.Xps.dll</HintPath>
     </Reference>
-    <Reference Include="PrepoznavanjeOblika">
-      <HintPath>..\PrepoznavanjeOblika\PrepoznavanjeOblika\bin\Release\PrepoznavanjeOblika.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="SpreadsheetLight, Version=3.4.0.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
