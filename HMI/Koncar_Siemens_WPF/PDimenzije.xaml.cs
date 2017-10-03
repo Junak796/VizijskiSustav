@@ -37,7 +37,7 @@ namespace VizijskiSustavWPF
         private Point mousePosition;
         List<object> cameraPointList= new List<object>();
         byte[] buffer = new byte[2];
-        private System.Windows.Data.CollectionViewSource productViewSource;
+     
        
         public PDimenzije()
         {
@@ -59,7 +59,7 @@ namespace VizijskiSustavWPF
 
         private void bDodaj_Click(object sender, RoutedEventArgs e)
         {
-            productViewSource.View.MoveCurrentToLast();
+            
         }
 
         private void bObrisi_Click(object sender, RoutedEventArgs e)

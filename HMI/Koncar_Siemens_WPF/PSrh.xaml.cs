@@ -36,17 +36,11 @@ namespace VizijskiSustavWPF
                 SetValue(numberOfMeas, value);
             }
         }
-
-        float lengthGaugeValue = 0.0f;
-        float posXold, posYold;
-        bool firstPoint = true;
-        float plotXvalue = 0.0f;
        
 
         List<DataPoint> points = new List<DataPoint>();
         LineSeries lineSeries = new LineSeries();
         BurrDetection burrDetection = new BurrDetection();
-        byte[] rawPlotData;
         float scalex;
         float scaley;
         public PSrh()

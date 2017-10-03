@@ -101,8 +101,7 @@ namespace VizijskiSustavWPF
 
         private void updatePage(object sender, PLCInterfaceEventArgs e)
         {
-            float k1,k2,y1,y2;
-            System.Drawing.PointF avg1,avg2;
+
             List<AreaPoint> l1 = new List<AreaPoint>();
             List<AreaPoint> l2 = new List<AreaPoint>();
             //if ((bool)e.StatusData.Angle.AutomaticActive.Value)

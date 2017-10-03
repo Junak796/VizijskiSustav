@@ -21,11 +21,11 @@ namespace VizijskiSustavWPF
     public partial class BitLamp : UserControl
     {
 
-        public static readonly DependencyProperty tag = DependencyProperty.Register("Tag", typeof(plcTag), typeof(BitLamp), new PropertyMetadata());
-        public plcTag Tag
+        public static readonly DependencyProperty pLCTag = DependencyProperty.Register("PLCTag", typeof(plcTag), typeof(BitLamp), new PropertyMetadata());
+        public plcTag PLCTag
         {
-            get { return (plcTag)GetValue(tag); }
-            set { SetValue(tag, value); }
+            get { return (plcTag)GetValue(pLCTag); }
+            set { SetValue(pLCTag, value); }
         }
 
         public static readonly DependencyProperty pLCConnection = DependencyProperty.Register("PLCConnection", typeof(PLCInterface), typeof(BitLamp), new PropertyMetadata(null, new PropertyChangedCallback(OnPLCAssign)));
@@ -76,8 +76,8 @@ namespace VizijskiSustavWPF
             {
                 try
                 { 
-                    Tag.GetValueFromGroupBuffer(e.CyclicStatusBuffer);
-                    if ((bool)Tag.Value)
+                    PLCTag.GetValueFromGroupBuffer(e.CyclicStatusBuffer);
+                    if ((bool)PLCTag.Value)
                     {
                         label123.Background = OnColor;
                     }

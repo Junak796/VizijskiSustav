@@ -111,7 +111,7 @@ namespace MjerniStolLimovi
 
         double GetOne(int measureNumber)
         {
-            double centerline2X, B, L1;
+            double centerline2X, B;
             switch (measureNumber)
             {
                 case 0: // B

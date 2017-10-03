@@ -33,7 +33,7 @@ namespace VizijskiSustavWPF
 
       
 
-        int cameraMissCounter = 0;
+        
         public App()
         {
             System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.High;

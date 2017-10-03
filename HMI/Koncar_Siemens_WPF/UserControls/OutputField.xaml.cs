@@ -21,11 +21,11 @@ namespace VizijskiSustavWPF
     public partial class OutputField : UserControl
     {
 
-        public static readonly DependencyProperty tag = DependencyProperty.Register("Tag", typeof(plcTag), typeof(OutputField), new PropertyMetadata());
-        public plcTag Tag
+        public static readonly DependencyProperty pLCTag = DependencyProperty.Register("PLCTag", typeof(plcTag), typeof(OutputField), new PropertyMetadata());
+        public plcTag PLCTag
         {
-            get { return (plcTag)GetValue(tag); }
-            set { SetValue(tag, value); }
+            get { return (plcTag)GetValue(pLCTag); }
+            set { SetValue(pLCTag, value); }
         }
 
         public static readonly DependencyProperty pLCConnection = DependencyProperty.Register("PLCConnection", typeof(PLCInterface), typeof(OutputField), new PropertyMetadata(null, new PropertyChangedCallback(OnPLCAssign)));
@@ -69,8 +69,8 @@ namespace VizijskiSustavWPF
             {
                 try
                 {
-                    Tag.GetValueFromGroupBuffer(e.CyclicStatusBuffer);
-                    SetpointX888 = (float)Tag.Value;
+                    PLCTag.GetValueFromGroupBuffer(e.CyclicStatusBuffer);
+                    SetpointX888 = (float)PLCTag.Value;
                 }
                 catch
                 {

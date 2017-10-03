@@ -203,7 +203,7 @@ namespace MjerniStolLimovi
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            int znj = 0;
+           
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)

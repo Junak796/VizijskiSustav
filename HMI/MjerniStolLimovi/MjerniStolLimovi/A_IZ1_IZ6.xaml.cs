@@ -178,7 +178,7 @@ namespace MjerniStolLimovi
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            int i = 1;
+      
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)

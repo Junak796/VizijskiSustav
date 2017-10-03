@@ -29,7 +29,6 @@ namespace VizijskiSustavWPF
         Regulator Reg = new Regulator();
         Algoritmi Alg = new Algoritmi();
         System.Timers.Timer saveSetupTimer= new System.Timers.Timer();
-        Thread reg_thread;
         string path = "zaglavljeStartup.txt";
         public PPostavke()
         {

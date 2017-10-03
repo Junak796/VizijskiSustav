@@ -21,11 +21,11 @@ namespace VizijskiSustavWPF
     public partial class InputField : UserControl
     {
 
-        public static readonly DependencyProperty tag = DependencyProperty.Register("Tag", typeof(plcTag), typeof(InputField), new PropertyMetadata());
-        public plcTag Tag
+        public static readonly DependencyProperty pLCTag = DependencyProperty.Register("PLCTag", typeof(plcTag), typeof(InputField), new PropertyMetadata());
+        public plcTag PLCTag
         {
-            get { return (plcTag)GetValue(tag); }
-            set { SetValue(tag, value); }
+            get { return (plcTag)GetValue(pLCTag); }
+            set { SetValue(pLCTag, value); }
         }
 
         public static readonly DependencyProperty pLCConnection = DependencyProperty.Register("PLCConnection", typeof(PLCInterface), typeof(InputField), new PropertyMetadata(null, new PropertyChangedCallback(OnPLCAssign)));
@@ -76,8 +76,8 @@ namespace VizijskiSustavWPF
                 //SetpointX888 = (float)e.ControlData.HorizontalnaOs.ZadanaPozicija.Value;
                 try
                 {
-                    Tag.GetValueFromGroupBuffer(e.CyclicControlBuffer);
-                    SetpointX888 = (float)Tag.Value;
+                    PLCTag.GetValueFromGroupBuffer(e.CyclicControlBuffer);
+                    SetpointX888 = (float)PLCTag.Value;
                 }
                 catch
                 { }
@@ -88,7 +88,7 @@ namespace VizijskiSustavWPF
         private static void OnSetpointXChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             InputField promjenaKontrola = (InputField)d;
-            promjenaKontrola.PLCConnection.WriteTag(promjenaKontrola.Tag, promjenaKontrola.SetpointX888);
+            promjenaKontrola.PLCConnection.WriteTag(promjenaKontrola.PLCTag, promjenaKontrola.SetpointX888);
   
         }
 

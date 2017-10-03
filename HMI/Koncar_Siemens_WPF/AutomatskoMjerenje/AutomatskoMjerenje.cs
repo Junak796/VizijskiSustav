@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Timers;
 using System.Threading;
-
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace VizijskiSustavWPF 
@@ -104,7 +100,7 @@ namespace VizijskiSustavWPF
 
     public class Algoritmi
     {
-        private PointF previousPoint = new PointF();
+    
 
         public delegate void OutReadyHandler(Algoritmi sender, OutReadyEventArgs e);
         public event OutReadyHandler OutReady;

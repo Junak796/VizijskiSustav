@@ -38,7 +38,6 @@ namespace VizijskiSustavWPF
 
         List<DataPoint> points = new List<DataPoint>();
         LineSeries lineSeries = new LineSeries();
-        byte[] rawPlotData;
         float scalex;
         float scaley;
         public PSablja()

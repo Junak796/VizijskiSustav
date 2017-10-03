@@ -21,11 +21,11 @@ namespace VizijskiSustavWPF
     public partial class BitButton : UserControl
     {
       
-        public static readonly DependencyProperty tag = DependencyProperty.Register("Tag", typeof(plcTag), typeof(BitButton), new PropertyMetadata());
-        public plcTag Tag
+        public static readonly DependencyProperty pLCTag = DependencyProperty.Register("PLCTag", typeof(plcTag), typeof(BitButton), new PropertyMetadata());
+        public plcTag PLCTag
         {
-            get { return (plcTag)GetValue(tag); }
-            set { SetValue(tag, value); }
+            get { return (plcTag)GetValue(pLCTag); }
+            set { SetValue(pLCTag, value); }
         }
 
 
@@ -56,13 +56,13 @@ namespace VizijskiSustavWPF
 
         private void Button_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            PLCConnection.WriteTag(Tag, true);
+            PLCConnection.WriteTag(PLCTag, true);
            
         }
 
         private void Button_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-            PLCConnection.WriteTag(Tag, false);
+            PLCConnection.WriteTag(PLCTag, false);
         }
 
         
