@@ -1,0 +1,457 @@
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VizijskiSustavWPF" xmlns:Custom="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon" xmlns:limovi="clr-namespace:VizijskiSustavWPF.limovi" 
+      xmlns:my="clr-namespace:HalconDotNet;assembly=halcondotnet"
+      xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+      xmlns:MjerniStolLimovi="clr-namespace:MjerniStolLimovi;assembly=MjerniStolLimovi" 
+      xmlns:Drawing="clr-namespace:DocumentFormat.OpenXml.Drawing;assembly=DocumentFormat.OpenXml" 
+      x:Class="VizijskiSustavWPF.PRucno"
+      mc:Ignorable="d" 
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+	  d:DesignWidth="1354" d:DesignHeight="828"
+      Title="PRucno">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Glavni grid -->
+        <Grid MinHeight="200" MinWidth="300"  Background="Black" Grid.RowSpan="1" >
+            <!--<Grid.DataContext>
+                <local:MainViewModel></local:MainViewModel>
+            </Grid.DataContext>-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="490*"/>
+                <ColumnDefinition Width="490*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="295"/>
+                <RowDefinition Height="293*"/>
+                <RowDefinition Height="102"/>
+            </Grid.RowDefinitions>
+            <!--MjerniStolLimovi:OdabirLimova Margin="4,43,4,0" Grid.ColumnSpan="2" Lim="{Binding Lim , Mode=TwoWay, Source={StaticResource MainLim}}" Purpose="4"/-->
+
+            <!-- Upravljanje i pozicije osi -->
+            <Grid Margin="4,43,4,0" Grid.ColumnSpan="2" Background="Black">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="6*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Height="83" Margin="30,128,0,0" VerticalAlignment="Top" Width="164" Click="Button_Click"/>
+
+                <!-- Prvi stupac - trenutne pozicije osi -->
+
+                <!-- Drugi stupac - pomicanje osi -->
+                <!-- Treći stupac - relativno pozicioniranje -->
+                <!-- Četvrti stupac - dodatne opcije -->
+
+            </Grid>
+            <!-- Kraj upravljanja osima -->
+
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="2" Margin="4,0" VerticalAlignment="Top" Width="Auto" Background="Black" Grid.ColumnSpan="3"/>
+
+            <!-- Grid za sliku s kamere ili web kamere -->
+            <Grid Grid.Row="1" Grid.Column="0" Background="{DynamicResource pozadina1}" Margin="4,4,4,0" >
+                <my:HWindowControlWPF  Name="hWindowControlWPF1"    ImagePart="0,0,1280,1024" />
+            </Grid>
+            <!--<WPFMediaKit:VideoCaptureElement Grid.Column="0" Grid.Row="1" Margin="4,4,4,4" Grid.RowSpan="2"></WPFMediaKit:VideoCaptureElement>
+            <webcam:VideoCaptureElement DesiredPixelWidth="320"
+                                                  DesiredPixelHeight="240"
+                                                  FPS="30"
+                                                  Width="400"
+                                                  Height="400"
+                                                  VideoCaptureDevice="{Binding Path=SelectedItem, ElementName=videoCapDevices}"
+                                                  x:Name="videoElement" Stretch="Fill" Grid.Column="0" Grid.Row="1" Margin="4,4,4,4" Grid.RowSpan="2" />-->
+
+            <!-- Grid dolje lijevo (red 2, stupac 0) -->
+            <Grid Margin="4,0" Grid.Row="2" Grid.Column="0">
+                <Border BorderBrush="Black" BorderThickness="0" Grid.ColumnSpan="2">
+                    <!-- Odabir vrste mjerenja -->
+                    <Grid Background="{StaticResource pozadina1}" Margin="0,0,0,4">
+                        <Grid Background="Black" Margin="0,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" x:Name="b_ukljucikameru" Margin="0,0,2,0" Style="{DynamicResource ButtonStill1}" Content="KAMERA" FontWeight="Bold" />
+                            <Button Grid.Column="1" x:Name="b_ukljuciLaser" Style="{DynamicResource ButtonStill1}" Content="LASERSKI SENZOR" Margin="2,4,2,0" FontWeight="Bold" />
+                            <Button Grid.Column="2" x:Name="b_ukljuciTicalo" Style="{DynamicResource ButtonStill1}" Content="TICALO" Margin="2,4,0,0" FontWeight="Bold" />
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Grid na sredini desno -->
+            <Grid x:Name="g_usrCtrlHolder"  Grid.RowSpan="3" Grid.Column="1" Margin="0,43,4,4" MinHeight="200" Background="black" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="0,0,0,0" Background="{DynamicResource pozadina1}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="28*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <local:BitButton Grid.Row="1" x:Name="bb_jogPlusX" Text="JOG +" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.HorizontalnaOs.JogPlus, ElementName=bb_jogPlusX}"/>
+                    <local:BitButton Grid.Row="1" Grid.Column="1" x:Name="bb_jogMinusX" Text="JOG -" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.HorizontalnaOs.JogMinus, ElementName=bb_jogMinusX}"/>
+                    <local:BitButton Grid.Row="2" x:Name="bb_reset" Text="RESET" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.HorizontalnaOs.Reset, ElementName=bb_reset}"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="ZADANA POZICIJA" Background="{DynamicResource pozadina1}" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" VerticalContentAlignment="Center"/>
+                    <local:InputField Grid.Row="3" Grid.Column="1" x:Name="if_setpointPosX" Grid.ColumnSpan="2"  Tag="{Binding PLCConnection.CONTROL.HorizontalnaOs.ZadanaPozicija, ElementName=if_setpointPosX}" PLCConnection="{DynamicResource PLCinterf}"/>
+                    <local:BitButton Grid.Row="4" Grid.ColumnSpan="2" x:Name="bb_uPozicijuX" Text="IDI U POZICIJU" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.HorizontalnaOs.IdiUPoziciju, ElementName=bb_uPozicijuX}"/>
+                    <local:BitButton Grid.Row="5" Grid.ColumnSpan="2" x:Name="bb_uPozTicalaX" Text="U POZICIJU TICALA" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.HorizontalnaOs.IdiUPozicijuTicala, ElementName=bb_uPozTicalaX}"/>
+                    <local:BitButton Grid.Row="6" Grid.ColumnSpan="2" x:Name="bb_uHomeX" Text="HOME" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.HorizontalnaOs.IdiUHome, ElementName=bb_uHomeX}"/>
+                </Grid>
+                <Grid Margin="0,0,0,0" Background="{DynamicResource pozadina1}" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="28*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <local:BitButton Grid.Row="1" x:Name="bb_jogPlusY" Text="JOG +" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.VertikalnaOs.JogPlus, ElementName=bb_jogPlusY}"/>
+                    <local:BitButton Grid.Row="1" Grid.Column="1" x:Name="bb_jogMinusY" Text="JOG -" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.VertikalnaOs.JogMinus, ElementName=bb_jogMinusY}"/>
+                    <local:BitButton Grid.Row="2" x:Name="bb_resetY" Text="RESET" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.VertikalnaOs.Reset, ElementName=bb_resetY}"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="ZADANA POZICIJA" Background="{DynamicResource pozadina1}" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" VerticalContentAlignment="Center"/>
+                    <local:InputField Grid.Row="3" Grid.Column="1" x:Name="if_setpointPosY" Grid.ColumnSpan="2"  Tag="{Binding PLCConnection.CONTROL.VertikalnaOs.ZadanaPozicija, ElementName=if_setpointPosY}" PLCConnection="{DynamicResource PLCinterf}"/>
+                    <local:BitButton Grid.Row="4" Grid.ColumnSpan="2" x:Name="bb_uPozicijuY" Text="IDI U POZICIJU" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.VertikalnaOs.IdiUPoziciju, ElementName=bb_uPozicijuY}"/>
+                    <local:BitButton Grid.Row="5" Grid.ColumnSpan="2" x:Name="bb_uSafePozY" Text="U SAFE POZICIJU" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.VertikalnaOs.IdiUSafePoziciju, ElementName=bb_uSafePozY}"/>
+                    <local:BitButton Grid.Row="6" Grid.ColumnSpan="2" x:Name="bb_uHomeY" Text="HOME" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.VertikalnaOs.IdiUHome, ElementName=bb_uHomeY}"/>
+                </Grid>
+                <Grid Margin="0,0,0,0" Background="{DynamicResource pozadina1}" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="28*"/>
+                        <RowDefinition Height="28*"/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <local:BitButton Grid.Row="1" x:Name="bb_jogPlusR" Text="JOG +" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.RotacijskaOs.JogPlus, ElementName=bb_jogPlusR}"/>
+                    <local:BitButton Grid.Row="1" Grid.Column="1" x:Name="bb_jogMinusR" Text="JOG -" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.RotacijskaOs.JogMinus, ElementName=bb_jogMinusR}"/>
+                    <local:BitButton Grid.Row="2" x:Name="bb_resetR" Text="RESET" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.RotacijskaOs.Reset, ElementName=bb_resetR}"/>
+                    <local:BitButton Grid.Row="2"  Grid.Column="1" x:Name="bb_referencirajR" Text="REFERENCIRAJ" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.RotacijskaOs.Referenciraj, ElementName=bb_referencirajR}"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="ZADANA POZICIJA" Background="{DynamicResource pozadina1}" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" VerticalContentAlignment="Center"/>
+                    <local:InputField Grid.Row="3" Grid.Column="1" x:Name="if_setpointPosR" Grid.ColumnSpan="2"  Tag="{Binding PLCConnection.CONTROL.RotacijskaOs.ZadanaPozicija, ElementName=if_setpointPosR}" PLCConnection="{DynamicResource PLCinterf}"/>
+                    <local:BitButton Grid.Row="4" Grid.ColumnSpan="2" x:Name="bb_uPozicijuR" Text="IDI U POZICIJU" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.RotacijskaOs.IdiUPoziciju, ElementName=bb_uPozicijuR}"/>
+                    <local:BitButton Grid.Row="5" Grid.ColumnSpan="2" x:Name="bb_uHomeR" Text="HOME" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.CONTROL.RotacijskaOs.IdiUHome, ElementName=bb_uHomeR}"/>
+                </Grid>
+
+                <Grid Margin="0,0,0,0" Background="{DynamicResource pozadina1}" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="33"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="33"/>
+                        <RowDefinition Height="33"/>
+
+                    </Grid.RowDefinitions>
+
+                    <!-- Naslov: X OS -->
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12" FontWeight="Bold" ><Run Language="hr-hr" Text="  X OS"/></TextBlock>
+
+                    <!-- X OS u poziciji -->
+                    <local:BitLamp Grid.Row="1" x:Name="bl_xOsUPoziciji" Text="U POZICIJI" OffColor="{DynamicResource pozadina1}" OnColor="Green" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.STATUS.HorizontalnaOs.UPoziciji, ElementName=bl_xOsUPoziciji}"  />
+
+                    <!-- X OS referencirana -->
+                    <local:BitLamp Grid.Row="2" x:Name="bl_xOsReferencirana" Text="REFERENCIRANA" OffColor="{DynamicResource pozadina1}" OnColor="Red" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.STATUS.HorizontalnaOs.UPoziciji, ElementName=bl_xOsReferencirana}" />
+                 
+
+                    <!-- X OS greska -->
+                    <local:BitLamp Grid.Row="3" x:Name="bl_xOsGreska" Text="GREŠKA" OffColor="{DynamicResource pozadina1}" OnColor="Green" PLCConnection="{DynamicResource PLCinterf}" Tag="{Binding PLCConnection.STATUS.HorizontalnaOs.Greska, ElementName=bl_xOsGreska}" />
+                
+
+                    <!-- X OS aktualna -->
+                    <Grid Grid.Row="4">
+                        <Grid Grid.Row="0" Margin="5,0,5,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Black">
+                                <Label Content="AKTUALNA POZICIJA" Background="{DynamicResource pozadina1}" Margin="2,2,1,2" Padding="0,3,0,3" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" />
+                            </Grid>
+                            <Grid Grid.Column="1" Background="Black" >
+                                <local:OutputField x:Name="of_actualPosX"   Tag="{Binding PLCConnection.STATUS.HorizontalnaOs.AktualnaPozicija, ElementName=of_actualPosX}" PLCConnection="{DynamicResource PLCinterf}"  />
+
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                   
+
+
+
+
+
+                </Grid>
+                <Grid Margin="0,0,0,0" Background="{DynamicResource pozadina1}" Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="33"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="33"/>
+                        <RowDefinition Height="33"/>
+                    </Grid.RowDefinitions>
+
+
+                    <!-- Naslov: Y OS -->
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12" FontWeight="Bold" ><Run Language="hr-hr" Text="  Y OS"/></TextBlock>
+
+                    <!-- Y OS u poziciji -->
+                    <Grid Grid.Row="1">
+                        <Grid Grid.Row="0" Margin="5,5,5,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Black">
+                                <Label Content="U POZICIJI" Background="{DynamicResource pozadina1}" Margin="2,2,1,1" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" />
+                            </Grid>
+                            <Grid Grid.Column="1" Background="Black">
+                                <Grid Background="{DynamicResource pozadina1}" Margin="1,2,2,1">
+                                    <Ellipse x:Name="ell_yOsUPoziciji" Height="13" Margin="0" Stroke="#00000000" Width="13" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="-1.467,0.467">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF979797" Offset="0"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Y OS referencirana -->
+                    <Grid Grid.Row="2">
+                        <Grid Grid.Row="0" Margin="5,0,5,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Black">
+                                <Label Content="REFERENCIRANA" Background="{DynamicResource pozadina1}" Margin="2,1,1,1" Padding="0,3,0,3" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" />
+                            </Grid>
+                            <Grid Grid.Column="1" Background="Black">
+                                <Grid Background="{DynamicResource pozadina1}" Margin="1,1,2,1">
+                                    <Ellipse x:Name="ell_yOsReferencirana" Height="13" Margin="0" Stroke="#00000000" Width="13" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="-1.467,0.467">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF979797" Offset="0"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Y OS greška -->
+                    <Grid Grid.Row="3">
+                        <Grid Grid.Row="0" Margin="5,0,5,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Black">
+                                <Label Content="GREŠKA" Background="{DynamicResource pozadina1}" Margin="2,1,1,2" Padding="0,3,0,3" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" />
+                            </Grid>
+                            <Grid Grid.Column="1" Background="Black">
+                                <Grid Background="{DynamicResource pozadina1}" Margin="1,1,2,2">
+                                    <Ellipse x:Name="ell_yOsGreska" Height="13" Margin="0" Stroke="#00000000" Width="13" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="-1.467,0.467">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF979797" Offset="0"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Y OS aktualna -->
+                    <Grid Grid.Row="4">
+                        <Grid Grid.Row="0" Margin="5,0,5,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Black">
+                                <Label Content="AKTUALNA POZICIJA" Background="{DynamicResource pozadina1}" Margin="2,2,1,2" Padding="0,3,0,3" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" />
+                            </Grid>
+                            <Grid Grid.Column="1" Background="Black">
+                                <local:OutputField x:Name="of_actualPosY"   Tag="{Binding PLCConnection.STATUS.VertikalnaOs.AktualnaPozicija, ElementName=of_actualPosY}" PLCConnection="{DynamicResource PLCinterf}"  />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+
+                </Grid>
+                <Grid Margin="0,0,0,0" Background="{DynamicResource pozadina1}" Grid.Column="1" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="33"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition Height="33"/>
+                        <RowDefinition Height="33"/>
+
+                    </Grid.RowDefinitions>
+
+
+
+
+
+                    <!-- Naslov: R OS -->
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12" FontWeight="Bold" ><Run Language="hr-hr" Text="  R OS"/></TextBlock>
+
+                    <!-- R OS u poziciji -->
+                    <Grid Grid.Row="1">
+                        <Grid Grid.Row="0" Margin="5,5,5,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Black">
+                                <Label Content="U POZICIJI" Background="{DynamicResource pozadina1}" Margin="2,2,1,1" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" />
+                            </Grid>
+                            <Grid Grid.Column="1" Background="Black">
+                                <Grid Background="{DynamicResource pozadina1}" Margin="1,2,2,1">
+                                    <Ellipse x:Name="ell_rOsUPoziciji" Height="13" Margin="0" Stroke="#00000000" Width="13" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="-1.467,0.467">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF979797" Offset="0"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!-- R OS referencirana -->
+                    <Grid Grid.Row="2">
+                        <Grid Grid.Row="0" Margin="5,0,5,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Black">
+                                <Label Content="REFERENCIRANA" Background="{DynamicResource pozadina1}" Margin="2,1,1,1" Padding="0,3,0,3" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" />
+                            </Grid>
+                            <Grid Grid.Column="1" Background="Black">
+                                <Grid Background="{DynamicResource pozadina1}" Margin="1,1,2,1">
+                                    <Ellipse x:Name="ell_rOsReferencirana" Height="13" Margin="0" Stroke="#00000000" Width="13" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="-1.467,0.467">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF979797" Offset="0"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!-- R OS greška -->
+                    <Grid Grid.Row="3">
+                        <Grid Grid.Row="0" Margin="5,0,5,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Black">
+                                <Label Content="GREŠKA" Background="{DynamicResource pozadina1}" Margin="2,1,1,2" Padding="0,3,0,3" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" />
+                            </Grid>
+                            <Grid Grid.Column="1" Background="Black">
+                                <Grid Background="{DynamicResource pozadina1}" Margin="1,1,2,2">
+                                    <Ellipse x:Name="ell_rOsGreska" Height="13" Margin="0" Stroke="#00000000" Width="13" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="-1.467,0.467">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF979797" Offset="0"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!-- R OS aktualna -->
+                    <Grid Grid.Row="4">
+                        <Grid Grid.Row="0" Margin="5,0,5,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Black">
+                                <Label Content="AKTUALNA POZICIJA" Background="{DynamicResource pozadina1}" Margin="2,2,1,2" Padding="0,3,0,3" FontWeight="Bold" HorizontalContentAlignment="Center" FontSize="12" />
+                            </Grid>
+                            <Grid Grid.Column="1" Background="Black">
+                                <local:OutputField x:Name="of_actualPosR"   Tag="{Binding PLCConnection.STATUS.RotacijskaOs.AktualnaPozicija, ElementName=of_actualPosR}" PLCConnection="{DynamicResource PLCinterf}"  />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+
+            <!--GridSplitter HorizontalAlignment="Left" Height="Auto" Margin="790,0,0,0" VerticalAlignment="Stretch" Width="2" Background="Black" Foreground="Black" BorderThickness="0" Grid.RowSpan="3"/-->
+            <GridSplitter Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Height="Auto" VerticalAlignment="Stretch" Width="4" Background="Black" Foreground="Black" BorderThickness="0" />
+
+
+        </Grid>
+        <!-- Kraj glavnog grida -->
+
+        <Grid Height="35" Margin="4,4,4,0" VerticalAlignment="Top" Background="{DynamicResource pozadina1}">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" FontSize="16" FontWeight="Bold"><Run Language="hr-hr" Text="RUČNO MJERENJE"/></TextBlock>
+        </Grid>
+
+    </Grid>
+</Page>

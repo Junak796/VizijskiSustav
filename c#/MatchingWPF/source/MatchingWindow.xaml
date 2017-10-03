@@ -1,0 +1,18 @@
+﻿<Window x:Class="MatchingWPF.MatchingWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MatchingWindow" Height="657" Width="851" Background="#FFD4D0C8">
+    <Grid HorizontalAlignment="Left">
+        <Button Height="42" HorizontalAlignment="Right" Margin="0,34,-805,0" Name="CreateBtn" VerticalAlignment="Top" Width="123" Click="CreateBtn_Click">Create Model</Button>
+        <Button Height="42" Margin="0,97,-805,0" Name="StartBtn" VerticalAlignment="Top" HorizontalAlignment="Right" Width="123" Click="StartBtn_Click">Start</Button>
+        <Button Height="42" Margin="0,162,-805,0" Name="StopBtn" VerticalAlignment="Top" HorizontalAlignment="Right" Width="123" Click="StopBtn_Click">Stop</Button>
+        <Label Height="23" HorizontalAlignment="Right" Margin="0,0,-91,50" Name="MatchingLabel" VerticalAlignment="Bottom" Width="77" FontSize="12" VerticalContentAlignment="Top">Matching:</Label>
+        <Label Height="23" Margin="0,0,-91,13" Name="MeasureLabel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="77" FontSize="12">Measure:</Label>
+        <Label Height="23" Margin="0,0,-395,50" Name="MatchingScoreLabel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="163" FontSize="12">Score:</Label>
+        <Label Height="23" Margin="0,0,-395,13" Name="MeasureNumLabel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="163" FontSize="12">Number of leads:</Label>
+        <Label Height="23" Margin="0,0,-199,50" Name="MatchingTimeLabel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="86" FontSize="12">Time:</Label>
+        <Label Height="23" Margin="0,0,-199,13" Name="MeasureTimeLabel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="86" FontSize="12">Time:</Label>
+        <Label Height="23" Margin="0,0,-587,13" Name="MeasureDistLabel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="191" FontSize="12">Minimum lead distance:</Label>
+        <my:HWindowControlWPF HInitWindow="hWindowControlWPF1_HInitWindow" HorizontalAlignment="Right" Margin="0,34,-654,105" Name="hWindowControlWPF1" Width="640" xmlns:my="clr-namespace:HalconDotNet;assembly=halcondotnet" />
+    </Grid>
+</Window>
